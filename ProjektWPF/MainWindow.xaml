@@ -70,7 +70,7 @@
                 HorizontalContentAlignment="Center"
                 x:Name="testtest"
             />
-            <TreeView HorizontalAlignment="Left" Height="154" Margin="12,144,0,0" VerticalAlignment="Top" Width="358">
+            <TreeView x:Name="duplicatesTree" HorizontalAlignment="Left" Height="154" Margin="12,144,0,0" VerticalAlignment="Top" Width="358">
                 <TreeViewItem Header="Nazwa"/>
             </TreeView>
             <Separator HorizontalAlignment="Left" Height="12" Margin="12,68,0,0" VerticalAlignment="Top" Width="358"/>
