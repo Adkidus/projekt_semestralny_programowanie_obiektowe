@@ -26,24 +26,56 @@
         </Menu>
         <Button Content="Wybierz folder"
             HorizontalAlignment="Left"
-            Margin="20,275,0,0"
+            Margin="12,43,0,0"
             VerticalAlignment="Top"
-            Width="89"/>
-        <Button Content="Zmień nazwę"
-            HorizontalAlignment="Left"
-            Margin="114,275,0,0"
-            VerticalAlignment="Top"
-            Width="92"/>
-        <Button Content="Usuń duplikaty"
-            HorizontalAlignment="Left"
-            Margin="211,275,0,0"
-            VerticalAlignment="Top"
-            Width="88"/>
-        <Button Content="Usuń"
-            HorizontalAlignment="Left"
-            Margin="303,275,0,0"
-            VerticalAlignment="Top"
-            Width="59"/>
+            Width="122" Click="DisplayDialog" Height="26"/>
+        <Grid x:Name="appOptions">
+            <TextBox 
+                TextWrapping="Wrap"
+                Text="" 
+                Margin="141,43,12,242" 
+                IsEnabled="False"
+                x:Name="selectedDir"
+            />
+            <Button Content="Zmień nazwę"
+                HorizontalAlignment="Left"
+                Margin="12,80,0,0"
+                VerticalAlignment="Top"
+                Width="117" Height="24"
+            />
+            <Button Content="Usuń duplikaty"
+                HorizontalAlignment="Left"
+                Margin="134,80,0,0"
+                VerticalAlignment="Top"
+                Width="117" Height="24"
+            />
+            <Button Content="Usuń"
+                HorizontalAlignment="Left"
+                Margin="257,80,0,0"
+                VerticalAlignment="Top"
+                Width="113" Height="24"
+            />
+            <Button Content="Wyczyść"
+                HorizontalAlignment="Left"
+    
+                VerticalAlignment="Bottom"
+                Width="358" Margin="12,0,0,178" Height="24"
+            />
+            <Label 
+                Content=""  
+                Width="100"
+                VerticalAlignment="Bottom"
+                Margin="153,0,137,78" 
+                Height="28"
+                HorizontalContentAlignment="Center"
+                x:Name="testtest"
+            />
+            <TreeView x:Name="duplicatesTree" HorizontalAlignment="Left" Height="154" Margin="12,144,0,0" VerticalAlignment="Top" Width="358">
+                <TreeViewItem Header="Nazwa"/>
+            </TreeView>
+            <Separator HorizontalAlignment="Left" Height="12" Margin="12,68,0,0" VerticalAlignment="Top" Width="358"/>
+            <Separator HorizontalAlignment="Left" Height="6" Margin="12,135,0,0" VerticalAlignment="Top" Width="358"/>
+        </Grid>
     </Grid>
 
 </Window>
