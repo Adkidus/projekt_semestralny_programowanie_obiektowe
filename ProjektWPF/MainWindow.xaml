@@ -26,24 +26,59 @@
         </Menu>
         <Button Content="Wybierz folder"
             HorizontalAlignment="Left"
-            Margin="20,275,0,0"
+            Margin="123,40,0,0"
             VerticalAlignment="Top"
-            Width="89"/>
-        <Button Content="Zmień nazwę"
-            HorizontalAlignment="Left"
-            Margin="114,275,0,0"
-            VerticalAlignment="Top"
-            Width="92"/>
-        <Button Content="Usuń duplikaty"
-            HorizontalAlignment="Left"
-            Margin="211,275,0,0"
-            VerticalAlignment="Top"
-            Width="88"/>
-        <Button Content="Usuń"
-            HorizontalAlignment="Left"
-            Margin="303,275,0,0"
-            VerticalAlignment="Top"
-            Width="59"/>
+            Width="157" Click="DisplayDialog"/>
+        <Grid x:Name="appOptions">
+            <TextBox 
+                TextWrapping="Wrap"
+                Text="" 
+                Margin="30,103,30,191" 
+                IsEnabled="False"
+                x:Name="selectedDir"
+            />
+            <Button Content="Zmień nazwę"
+                HorizontalAlignment="Left"
+                Margin="30,141,0,0"
+                VerticalAlignment="Top"
+                Width="100"
+            />
+            <Button Content="Usuń duplikaty"
+                HorizontalAlignment="Left"
+                Margin="144,141,0,0"
+                VerticalAlignment="Top"
+                Width="100"
+            />
+            <Button Content="Usuń"
+                HorizontalAlignment="Left"
+                Margin="258,141,0,0"
+                VerticalAlignment="Top"
+                Width="100"
+            />
+            <Button Content="Wyczyść"
+                HorizontalAlignment="Left"
+    
+                VerticalAlignment="Bottom"
+                Width="328" Margin="30,0,0,120"
+            />
+            <Label 
+                Content="Wybrany folder:"  
+                Width="100"
+                VerticalAlignment="Bottom"
+                Margin="153,0,137,211" 
+                Height="28"
+                HorizontalContentAlignment="Center"
+            />
+            <Label 
+                Content=""  
+                Width="100"
+                VerticalAlignment="Bottom"
+                Margin="153,0,137,78" 
+                Height="28"
+                HorizontalContentAlignment="Center"
+                x:Name="testtest"
+            />
+        </Grid>
     </Grid>
 
 </Window>
