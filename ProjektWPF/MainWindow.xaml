@@ -41,7 +41,7 @@
                 HorizontalAlignment="Left"
                 Margin="12,80,0,0"
                 VerticalAlignment="Top"
-                Width="117" Height="24"
+                Width="117" Height="24" AutomationProperties.Name="ChangeFileNameBtn" Click="ChangeFileName"
             />
             <Button Content="Usuń duplikaty"
                 HorizontalAlignment="Left"
