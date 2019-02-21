@@ -5,36 +5,35 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjektWPF"
         mc:Ignorable="d"
-        Title="Edytor plików" MinHeight="350" MaxHeight="350" MinWidth="400" MaxWidth="400" Height="350" Width="400">
+        Title="Image Duplicator" MinHeight="350" MaxHeight="350" MinWidth="400" MaxWidth="400" Height="350" Width="400">
     <Grid Margin="0,0,2,0">
         <Menu IsMainMenu="True">
             <MenuItem Header="_Plik">
-                <MenuItem Header="_Wybierz folder"/>
-                <MenuItem Header="_Zmień nazwę"/>
-                <MenuItem Header="_Usuń pliki"/>
+                <MenuItem Header="_Wybierz folder" Click="DisplayDialog"/>
+                <MenuItem Header="_Zmień nazwę" Click="ChangeFileName"/>
+                <MenuItem Header="_Usuń pliki" Click="DeleteSelected"/>
             </MenuItem>
             <MenuItem Header="_Twórcy">
                 <MenuItem Header="_Adrian Ciepły"/>
                 <MenuItem Header="_Michał Gorączko"/>
                 <MenuItem Header="_Tomasz Olszówka"/>
             </MenuItem>
-            <MenuItem Header="_Zmień język">
-                <MenuItem Header="_Polski"/>
-                <MenuItem Header="_Angielski"/>
-            </MenuItem>
         </Menu>
-        <Button Content="Wybierz folder"
-            HorizontalAlignment="Left"
-            Margin="12,43,0,0"
-            VerticalAlignment="Top"
-            Width="122" Click="DisplayDialog" Height="26"/>
         <Grid x:Name="appOptions">
+            <Button Content="Wybierz folder"
+                HorizontalAlignment="Left"
+                Margin="12,43,0,0"
+                VerticalAlignment="Top"
+                Width="122" Click="DisplayDialog" Height="26"
+            />
             <TextBox 
                 TextWrapping="Wrap"
                 Text="" 
-                Margin="141,43,12,242" 
+                FontFamily="Arial"
+                FontSize="12"
+                Margin="141,43,12,244" 
                 IsEnabled="False"
-                x:Name="selectedDir"
+                x:Name="selectedDir" Height="32"
             />
             <Button Content="Zmień nazwę"
                 HorizontalAlignment="Left"
@@ -72,11 +71,13 @@
         <Viewbox HorizontalAlignment="Left" Height="100" Margin="380,309,-90,-90" VerticalAlignment="Top" Width="100"/>
         <Grid x:Name="changename" Visibility="Hidden">
             <Border Background="white" BorderThickness="1" Margin="0,22,-2,0">
-                <TextBox Margin="76,80,76,185" TextWrapping="Wrap" Text=""/>
+                <TextBox Margin="76,80,76,185" TextWrapping="Wrap" Text="" x:Name="newFileNameInput"/>
             </Border>
             <Label Content="Zmień nazwę" HorizontalContentAlignment="Center" Margin="142,73,142,0" VerticalAlignment="Top" Width="106" />
-            <Button Content="Anuluj" HorizontalAlignment="Left" Margin="117,134,0,0" VerticalAlignment="Top" Width="74" Height="24"/>
-            <Button Content="Zapisz" HorizontalAlignment="Left" Margin="197,134,0,0" VerticalAlignment="Top" Width="74" Height="24"/>
+            <Label Content="Aktualna nazwa:" HorizontalContentAlignment="Center" Margin="142,177,142,0" VerticalAlignment="Top" Width="106" />
+            <Label x:Name="setNamePath" Content="" HorizontalContentAlignment="Left" Margin="25,203,29,0" VerticalAlignment="Top" />
+            <Button x:Name="cancelSetName" Content="Anuluj" HorizontalAlignment="Left" Margin="118,134,0,0" VerticalAlignment="Top" Width="74" Height="24" Click="cancelSetName_Click"/>
+            <Button x:Name="saveSetName" Content="Zapisz" HorizontalAlignment="Left" Margin="198,134,0,0" VerticalAlignment="Top" Width="74" Height="24" Click="saveSetName_Click"/>
         </Grid>
 
     </Grid>

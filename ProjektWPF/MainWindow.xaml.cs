@@ -24,11 +24,43 @@ namespace ProjektWPF
     public partial class MainWindow : Window
     {
         List<Imagess> DuplicatesList = new List<Imagess>();
-        string dirPath;
 
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void cancelSetName_Click(object sender, RoutedEventArgs e)
+        {
+            newFileNameInput.Text = "";
+            changename.Visibility = Visibility.Hidden;
+            appOptions.Visibility = Visibility.Visible;
+        }
+
+        private void saveSetName_Click(object sender, RoutedEventArgs e)
+        {
+            string oldFile = setNamePath.Content.ToString();
+            string newFile = newFileNameInput.Text.ToString();
+            if (newFile.Length >= 3)
+            {
+                string path = oldFile.Substring(0, oldFile.LastIndexOf('\\'));
+                string mime = oldFile.Substring(oldFile.LastIndexOf('.') + 1);
+                System.IO.File.Move(oldFile, path + "\\" + newFile + "." + mime);
+
+                System.Threading.Thread.Sleep(500);
+                newFileNameInput.Text = "";
+                changename.Visibility = Visibility.Hidden;
+                appOptions.Visibility = Visibility.Visible;
+
+                TreeViewItem item = duplicatesTree.SelectedItem as TreeViewItem;
+                string itemPathToImg = item.Header.ToString();
+                refreshTree();
+                DrawImages(selectedDir.Text);
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("Nowa nazwa jest zbyt krótka!");
+            }
         }
 
         private void DeleteSelected(object sender, RoutedEventArgs e)
@@ -49,19 +81,26 @@ namespace ProjektWPF
 
         private void DeleteDuplicates(object sender, RoutedEventArgs e)
         {
-            for (var i = 0; i < DuplicatesList.Count; i++)
+            if(DuplicatesList.Count > 0)
             {
-                if (i + 1 < DuplicatesList.Count)
+                for (var i = 0; i < DuplicatesList.Count; i++)
                 {
-                    if (CompareImages(DuplicatesList[i].hashCode, DuplicatesList[i + 1].hashCode))
+                    if (i + 1 < DuplicatesList.Count)
                     {
-                        string filepath = DuplicatesList[i].filePath;
-                        DeleteImg(filepath);
+                        if (CompareImages(DuplicatesList[i].hashCode, DuplicatesList[i + 1].hashCode))
+                        {
+                            string filepath = DuplicatesList[i].filePath;
+                            DeleteImg(filepath);
+                        }
                     }
                 }
+                refreshTree();
+                DrawImages(selectedDir.Text);
             }
-            refreshTree();
-            DrawImages(selectedDir.Text);
+            else
+            {
+                System.Windows.MessageBox.Show("Wybierz plik!");
+            }
         }
 
         private void DeleteImg(string filepath)
@@ -102,6 +141,9 @@ namespace ProjektWPF
             else
             {
                 string itemPathToImg = item.Header.ToString();
+                appOptions.Visibility = Visibility.Hidden;
+                changename.Visibility = Visibility.Visible;
+                setNamePath.Content = itemPathToImg;
             }
         }
 
