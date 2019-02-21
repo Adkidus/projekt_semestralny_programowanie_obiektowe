@@ -70,6 +70,15 @@
             <Separator HorizontalAlignment="Left" Height="6" Margin="12,109,0,0" VerticalAlignment="Top" Width="358"/>
         </Grid>
         <Viewbox HorizontalAlignment="Left" Height="100" Margin="380,309,-90,-90" VerticalAlignment="Top" Width="100"/>
+        <Grid x:Name="changename" Visibility="Hidden">
+            <Border Background="white" BorderThickness="1" Margin="0,22,-2,0">
+                <TextBox Margin="76,80,76,185" TextWrapping="Wrap" Text=""/>
+            </Border>
+            <Label Content="Zmień nazwę" HorizontalContentAlignment="Center" Margin="142,73,142,0" VerticalAlignment="Top" Width="106" />
+            <Button Content="Anuluj" HorizontalAlignment="Left" Margin="117,134,0,0" VerticalAlignment="Top" Width="74" Height="24"/>
+            <Button Content="Zapisz" HorizontalAlignment="Left" Margin="197,134,0,0" VerticalAlignment="Top" Width="74" Height="24"/>
+        </Grid>
+
     </Grid>
 
 </Window>
