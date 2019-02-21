@@ -41,6 +41,19 @@ namespace ProjektWPF
             }
         }
 
+        private void ChangeFileName(object sender, RoutedEventArgs e)
+        {
+            TreeViewItem item = duplicatesTree.SelectedItem as TreeViewItem;
+            if (item == null)
+            {
+                System.Windows.MessageBox.Show("Wybierz plik!");
+            }
+            else
+            {
+                string itemPathToImg = item.Header.ToString();
+            }
+        }
+
         private void DrawImages(string path)
         {
             List<Imagess> hashedImages = new List<Imagess>();
@@ -132,6 +145,5 @@ namespace ProjektWPF
             }
             return true;
         }
-
     }
 }
