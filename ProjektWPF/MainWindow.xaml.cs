@@ -23,9 +23,60 @@ namespace ProjektWPF
 {
     public partial class MainWindow : Window
     {
+        List<Imagess> DuplicatesList = new List<Imagess>();
+        string dirPath;
+
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void DeleteSelected(object sender, RoutedEventArgs e)
+        {
+            TreeViewItem item = duplicatesTree.SelectedItem as TreeViewItem;
+            if (item == null)
+            {
+                System.Windows.MessageBox.Show("Wybierz plik!");
+            }
+            else
+            {
+                string itemPathToImg = item.Header.ToString();
+                DeleteImg(itemPathToImg);
+                refreshTree();
+                DrawImages(selectedDir.Text);
+            }
+        }
+
+        private void DeleteDuplicates(object sender, RoutedEventArgs e)
+        {
+            for (var i = 0; i < DuplicatesList.Count; i++)
+            {
+                if (i + 1 < DuplicatesList.Count)
+                {
+                    if (CompareImages(DuplicatesList[i].hashCode, DuplicatesList[i + 1].hashCode))
+                    {
+                        string filepath = DuplicatesList[i].filePath;
+                        DeleteImg(filepath);
+                    }
+                }
+            }
+            refreshTree();
+            DrawImages(selectedDir.Text);
+        }
+
+        private void DeleteImg(string filepath)
+        {
+            if (File.Exists(filepath))
+            {
+                try
+                {
+                    File.Delete(filepath);
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
         }
 
         private void DisplayDialog(object sender, RoutedEventArgs e)
@@ -56,8 +107,9 @@ namespace ProjektWPF
 
         private void DrawImages(string path)
         {
+            DuplicatesList = new List<Imagess>();
+
             List<Imagess> hashedImages = new List<Imagess>();
-            List<Imagess> DuplicatesList = new List<Imagess>();
             var acceptedFiles = new String[] { "jpg", "jpeg", "png", "bmp", "svg", "gif" };
             var files = GetImages(path, acceptedFiles, false);
             foreach (var f in files)
@@ -68,6 +120,13 @@ namespace ProjektWPF
             CompareToList(hashedImages, DuplicatesList);
 
             duplicatesTree.Items.Clear();
+            if(DuplicatesList.Count < 1)
+            {
+                var item = new TreeViewItem();
+                item.Header = "Brak duplikatów";
+                duplicatesTree.Items.Add(item);
+            }
+
             foreach (var d in DuplicatesList)
             {
                 var item = new TreeViewItem();
@@ -75,7 +134,10 @@ namespace ProjektWPF
                 duplicatesTree.Items.Add(item);
             }
         }
-
+        private void refreshTree()
+        {
+            duplicatesTree.Items.Clear();
+        }
         private static void CompareToList(List<Imagess> hashedImages, List<Imagess> DuplicatesList)
         {
             for (int i = 0; i <= hashedImages.Count; i++)
@@ -145,10 +207,24 @@ namespace ProjektWPF
             }
             return true;
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private static TreeViewItem[] getTreeViewItems(TreeView treeView)
         {
-            File.Delete();
+            List<TreeViewItem> returnItems = new List<TreeViewItem>();
+            for (int x = 0; x < treeView.Items.Count; x++)
+            {
+                returnItems.AddRange(getTreeViewItems((TreeViewItem)treeView.Items[x]));
+            }
+            return returnItems.ToArray();
+        }
+        private static TreeViewItem[] getTreeViewItems(TreeViewItem currentTreeViewItem)
+        {
+            List<TreeViewItem> returnItems = new List<TreeViewItem>();
+            returnItems.Add(currentTreeViewItem);
+            for (int x = 0; x < currentTreeViewItem.Items.Count; x++)
+            {
+                returnItems.AddRange(getTreeViewItems((TreeViewItem)currentTreeViewItem.Items[x]));
+            }
+            return returnItems.ToArray();
         }
     }
 }

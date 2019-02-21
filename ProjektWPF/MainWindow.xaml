@@ -22,7 +22,6 @@
                 <MenuItem Header="_Polski"/>
                 <MenuItem Header="_Angielski"/>
             </MenuItem>
-            <MenuItem Header="_Zamknij"/>
         </Menu>
         <Button Content="Wybierz folder"
             HorizontalAlignment="Left"
@@ -47,19 +46,13 @@
                 HorizontalAlignment="Left"
                 Margin="134,80,0,0"
                 VerticalAlignment="Top"
-                Width="117" Height="24"
+                Width="117" Height="24" Click="DeleteDuplicates"
             />
             <Button Content="Usuń Zaznaczone"
                 HorizontalAlignment="Left"
                 Margin="257,80,0,0"
                 VerticalAlignment="Top"
-                Width="113" Height="24" Click="Button_Click"
-            />
-            <Button Content="Wyczyść"
-                HorizontalAlignment="Left"
-    
-                VerticalAlignment="Bottom"
-                Width="358" Margin="12,0,0,178" Height="24"
+                Width="113" Height="24" Click="DeleteSelected"
             />
             <Label 
                 Content=""  
@@ -70,12 +63,13 @@
                 HorizontalContentAlignment="Center"
                 x:Name="testtest"
             />
-            <TreeView x:Name="duplicatesTree" HorizontalAlignment="Left" Height="154" Margin="12,144,0,0" VerticalAlignment="Top" Width="358">
+            <TreeView x:Name="duplicatesTree" HorizontalAlignment="Left" Height="178" Margin="12,120,0,0" VerticalAlignment="Top" Width="358">
                 <TreeViewItem Header="Nazwa"/>
             </TreeView>
             <Separator HorizontalAlignment="Left" Height="12" Margin="12,68,0,0" VerticalAlignment="Top" Width="358"/>
-            <Separator HorizontalAlignment="Left" Height="6" Margin="12,135,0,0" VerticalAlignment="Top" Width="358"/>
+            <Separator HorizontalAlignment="Left" Height="6" Margin="12,109,0,0" VerticalAlignment="Top" Width="358"/>
         </Grid>
+        <Viewbox HorizontalAlignment="Left" Height="100" Margin="380,309,-90,-90" VerticalAlignment="Top" Width="100"/>
     </Grid>
 
 </Window>
