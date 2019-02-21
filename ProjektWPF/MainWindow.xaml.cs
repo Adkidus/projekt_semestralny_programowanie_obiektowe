@@ -145,5 +145,10 @@ namespace ProjektWPF
             }
             return true;
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            File.Delete();
+        }
     }
 }
